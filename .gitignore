@@ -1,0 +1,72 @@
+# Active Configuration Files (created by switch-registry.sh)
+# These contain actual credentials and should not be committed
+python/.env
+python/pip.conf
+javascript/.env
+javascript/.npmrc
+java/.env
+java/settings.xml
+java/settings-registry2.xml
+
+# Registry 2 template files (contain actual Chainguard credentials)
+python/.env.registry2
+python/pip.conf.registry2
+javascript/.env.registry2
+javascript/.npmrc.registry2
+java/.env.registry2
+
+# Root .env file containing all registry credentials
+.env
+
+# Dependency directories
+python/__pycache__/
+python/*.pyc
+python/.pytest_cache/
+python/venv/
+python/env/
+
+javascript/node_modules/
+javascript/.npm/
+
+java/target/
+java/.mvn/
+java/.idea/
+java/*.iml
+
+# Build artifacts
+*.jar
+*.war
+*.class
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker
+.dockerignore
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables with real credentials
+.env.local
+.env.production
+
+# Note: .env.registry1 and .env.registry2 template files CAN be committed
+# if they contain placeholder values only (no real credentials)

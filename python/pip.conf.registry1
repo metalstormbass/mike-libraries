@@ -1,0 +1,12 @@
+# Pip Configuration for Registry 1
+# Public PyPI (Default)
+
+[global]
+timeout = 60
+# Use public PyPI - no authentication required
+index-url = https://pypi.org/simple/
+
+# Certificate verification is handled automatically for public PyPI
+
+[install]
+# no-cache-dir = true

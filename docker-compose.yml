@@ -1,0 +1,65 @@
+
+services:
+  python-app:
+    build:
+      context: ./python
+      dockerfile: Dockerfile
+      args:
+        - PIP_INDEX_URL=${PIP_INDEX_URL}
+        - PIP_EXTRA_INDEX_URL=${PIP_EXTRA_INDEX_URL}
+    container_name: python-app
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+      - PORT=5000
+    env_file:
+      - ./python/.env
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  javascript-app:
+    build:
+      context: ./javascript
+      dockerfile: Dockerfile
+      args:
+        - NPM_USERNAME=${NPM_USERNAME}
+        - NPM_PASSWORD=${NPM_PASSWORD}
+        - NPM_EMAIL=${NPM_EMAIL}
+    container_name: javascript-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    env_file:
+      - ./javascript/.env
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  java-app:
+    build:
+      context: ./java
+      dockerfile: Dockerfile
+      args:
+        - MAVEN_USERNAME=${MAVEN_USERNAME}
+        - MAVEN_PASSWORD=${MAVEN_PASSWORD}
+    container_name: java-app
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+      - SERVER_PORT=8080
+      - MAVEN_USERNAME=${MAVEN_USERNAME}
+      - MAVEN_PASSWORD=${MAVEN_PASSWORD}
+    env_file:
+      - ./java/.env
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

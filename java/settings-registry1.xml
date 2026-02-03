@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Maven Settings for Registry 1 (Public Maven Central) -->
+<!-- This is the default configuration - uses public Maven Central with no authentication -->
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                              http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <localRepository>${user.home}/.m2/repository</localRepository>
+    <offline>false</offline>
+
+    <!-- No servers configuration needed for public Maven Central -->
+
+    <!-- No mirrors - use Maven Central directly -->
+
+    <!-- No special profiles needed for public repositories -->
+    <!-- Maven will use https://repo.maven.apache.org/maven2/ by default -->
+
+</settings>
