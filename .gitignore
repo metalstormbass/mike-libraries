@@ -70,3 +70,6 @@ yarn-error.log*
 
 # Note: .env.registry1 and .env.registry2 template files CAN be committed
 # if they contain placeholder values only (no real credentials)
+
+# Nested npmrc with real credentials
+javascript/cg_js/.npmrc

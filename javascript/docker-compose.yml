@@ -1,0 +1,46 @@
+services:
+  postgres:
+    image: cgr.dev/chainguard/postgres:latest-dev
+    environment:
+      POSTGRES_USER: finview
+      POSTGRES_PASSWORD: finview
+      POSTGRES_DB: finview
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "finview"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    container_name: finview-postgres
+
+  js-public:
+    build:
+      context: ./js
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://finview:finview@postgres:5432/finview
+    depends_on:
+      postgres:
+        condition: service_healthy
+    container_name: js-public
+
+  js-chainguard:
+    build:
+      context: ./cg_js
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3000"
+    environment:
+      DATABASE_URL: postgresql://finview:finview@postgres:5432/finview
+    depends_on:
+      postgres:
+        condition: service_healthy
+    container_name: js-chainguard
+
+volumes:
+  pgdata:

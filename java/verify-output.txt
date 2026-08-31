@@ -1,0 +1,64 @@
+Analyzing /tmp/cg-verify/commons-io-2.13.0.jar...
+No signature file(s) found for /tmp/cg-verify/commons-io-2.13.0.jar
+No signature file(s) found for /tmp/cg-verify/commons-io-2.13.0.jar
+Fetching from URL: https://libraries.cgr.dev/java-all/commons-io/commons-io/2.13.0/commons-io-2.13.0.jar.cgr.sig
+Getting library ecosystem credentials for java with parent mikeco.com
+Successfully obtained credentials (identity_id: a8cae4933a02f321aab564b94317461940499c01/2e336c235b909057) from chainctl
+Using basic auth with identity_id: a8cae4933a02f321aab564b94317461940499c01/2e336c235b909057
+Fetching from URL: https://libraries.cgr.dev/java-all/commons-io/commons-io/2.13.0/commons-io-2.13.0.jar.cgr.crt
+Returning cached credentials for java ecosystem
+Using basic auth with identity_id: a8cae4933a02f321aab564b94317461940499c01/2e336c235b909057
+Fetching from URL: https://libraries.cgr.dev/java-all/commons-io/commons-io/2.13.0/commons-io-2.13.0.jar.cgr.bundle
+Returning cached credentials for java ecosystem
+Using basic auth with identity_id: a8cae4933a02f321aab564b94317461940499c01/2e336c235b909057
+Fetching from URL: https://libraries.cgr.dev/java-all/commons-io/commons-io/2.13.0/commons-io-2.13.0.jar
+Returning cached credentials for java ecosystem
+Using basic auth with identity_id: a8cae4933a02f321aab564b94317461940499c01/2e336c235b909057
+Checking for signatures: /tmp/cg-verify/commons-io-2.13.0.jar
+File verifier available: true
+Analyzing Java artifact: /tmp/cg-verify/commons-io-2.13.0.jar
+Checking for local Java signature files: /tmp/cg-verify/commons-io-2.13.0.jar
+Attempting remote Java signature verification: /tmp/cg-verify/commons-io-2.13.0.jar
+Trying to extract Maven coordinates from pom.properties
+Found groupID "commons-io" from pom.properties
+Found artifactID "commons-io" from pom.properties
+Found version "2.13.0" from pom.properties
+Trying to extract Maven coordinates from pom.xml
+Found pom.xml at META-INF/maven/commons-io/commons-io/pom.xml
+Trying to extract Maven coordinates from MANIFEST.MF
+Trying to extract Maven coordinates from filename
+Found artifactID "commons-io" from filename
+Found version "2.13.0" from filename
+Inferred groupID "org.apache.commons" from well-known pattern
+Sanitized coordinates: commons-io:commons-io:2.13.0
+Maven coordinates complete: commons-io:commons-io:2.13.0
+Sources: groupID from pom.properties, artifactID from pom.properties, version from pom.properties
+Fetching signature files for Maven artifact: commons-io:commons-io:2.13.0
+Java signature verification error: no signature files found remotely for commons-io:commons-io:2.13.0
+Trying to extract Maven coordinates from pom.properties
+Found groupID "commons-io" from pom.properties
+Found artifactID "commons-io" from pom.properties
+Found version "2.13.0" from pom.properties
+Trying to extract Maven coordinates from pom.xml
+Found pom.xml at META-INF/maven/commons-io/commons-io/pom.xml
+Trying to extract Maven coordinates from MANIFEST.MF
+Trying to extract Maven coordinates from filename
+Found artifactID "commons-io" from filename
+Found version "2.13.0" from filename
+Inferred groupID "org.apache.commons" from well-known pattern
+Sanitized coordinates: commons-io:commons-io:2.13.0
+Maven coordinates complete: commons-io:commons-io:2.13.0
+Sources: groupID from pom.properties, artifactID from pom.properties, version from pom.properties
+Signature verification failed, trying checksum verification...
+Downloading commons-io-2.13.0.jar from Chainguard repository for checksum comparison...
+‚M-^\M-^S Checksums match! Local and Chainguard repository versions are identical
+Artifact: /tmp/cg-verify/commons-io-2.13.0.jar
+Verification Coverage: ^[[32m100.00%^[[0m
+Verified packages: 1 of 1
+Details: Verified via SHA256 checksum comparison with Chainguard repository
+Maven artifact: commons-io:commons-io:2.13.0
+Maven artifact: ^[[1mcommons-io:commons-io:2.13.0^[[0m
+Primary Verification Method: checksum
+Verification Methods:
+  - checksum (remote): Checksum matched with Chainguard repository
+    Path: /tmp/cg-verify/commons-io-2.13.0.jar

@@ -1,38 +1,32 @@
-FROM cgr.dev/chainguard-private/maven:3.9.12-jdk17-dev AS build
+FROM cgr.dev/mikeco.com/jdk:17-dev AS build
+
+USER root
+RUN apk add --no-cache maven
 
 ARG MAVEN_USERNAME
 ARG MAVEN_PASSWORD
+ARG SETTINGS_FILE=settings.xml
+ARG SPRING_BOOT_VERSION=3.2.1
+ARG MAVEN_EXTRA_ARGS=""
+ENV MAVEN_USERNAME=${MAVEN_USERNAME} \
+    MAVEN_PASSWORD=${MAVEN_PASSWORD}
 
 WORKDIR /app
 
-# Setup Maven settings with credentials
-RUN mkdir -p /home/nonroot/.m2
-COPY settings-registry2.xml /app/settings-template.xml
-RUN sed "s|\${env.MAVEN_USERNAME}|${MAVEN_USERNAME}|g" /app/settings-template.xml | \
-    sed "s|\${env.MAVEN_PASSWORD}|${MAVEN_PASSWORD}|g" > /home/nonroot/.m2/settings.xml && \
-    rm /app/settings-template.xml
+COPY ${SETTINGS_FILE} /root/.m2/settings.xml
 
-# Download dependencies
 COPY pom.xml .
-RUN mvn -s /home/nonroot/.m2/settings.xml dependency:go-offline
-
-# Build application
 COPY src ./src
-RUN mvn -s /home/nonroot/.m2/settings.xml clean package -DskipTests
+RUN mvn -s /root/.m2/settings.xml \
+    -Dspring-boot.version=${SPRING_BOOT_VERSION} \
+    ${MAVEN_EXTRA_ARGS} \
+    package -DskipTests
 
-# Runtime stage
-FROM cgr.dev/chainguard-private/jre:openjdk-17-dev
-# Install chainctl as root
-USER root
-RUN apk add --no-cache chainctl
-USER nonroot
+FROM cgr.dev/mikeco.com/jre:17
 WORKDIR /app
 
-# Copy the built jar from build stage
 COPY --from=build /app/target/*.jar app.jar
 
-# Expose port
 EXPOSE 8080
 
-# Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
